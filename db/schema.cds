@@ -6,7 +6,7 @@ using {
 
 namespace ibike.db;
 
-entity Bikes : cuid {
+entity Bikes : cuid, managed {
     name : String(128) not null  @mandatory;
     type : String(20);
     price : Int32;
@@ -14,7 +14,7 @@ entity Bikes : cuid {
     currentStation: Association to Stations;
 }
 
-entity Stations : cuid {
+entity Stations : cuid, managed {
     location : String(128) not null @mandatory;
     maxCapacity : Int32;
     bikesAvailable : Int32;
@@ -22,21 +22,21 @@ entity Stations : cuid {
     incentiveLevel : Association to Incentives;
 }
 
-entity Incentives : cuid {
+entity Incentives : cuid, managed {
     level : String(10);
     discountRate : Int32;
     bonusMinutes : Int32;
     // station: Association to many Stations on station.incentiveLevel = $self;
 }
 
-entity TaskItems : cuid {
+entity TaskItems : cuid, managed {
     bike : Association to Bikes;
     departure : Association to Stations;
     target : Association to Stations;
     task : Association to RedistributionTasks;
 }
 
-entity RedistributionTasks : cuid {
+entity RedistributionTasks : cuid, managed {
     status : Association to TaskStatus;
     assignedWorker : Association to Workers;
     // taskItems : Composition of  many TaskItems on tasksItems.task = $self;
@@ -46,7 +46,7 @@ entity TaskStatus : CodeList {
     key code : String(20);
 }
 
-entity Workers : cuid {
+entity Workers : cuid, managed {
     name : String(20);
     email : String(128);
     // tasks : Association to many RedistributionTasks on tasks.assignedWorker = $self;
