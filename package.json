@@ -14,5 +14,12 @@
   },
   "scripts": {
     "start": "cds-serve"
+  },
+  "cds": {
+    "requires": {
+      "messaging": {
+        "[development]": { "kind": "file-based-messaging" }
+      }
+    }
   }
 }
