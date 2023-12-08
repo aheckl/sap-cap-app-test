@@ -179,10 +179,6 @@ class BikeService extends cds.ApplicationService {
       }
     });
 
-
-
-
-
     return super.init();
   }
 }
