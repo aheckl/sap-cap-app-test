@@ -19,7 +19,7 @@ entity Stations : cuid, managed {
     maxCapacity : Int32;
     bikesAvailable : Int32;
     // bikes : Association to many Bikes on bikes.currentStation = $self;
-    bringIncentiveLevel : Association to Incentives;
+    returnIncentiveLevel : Association to Incentives;
     rentIncentiveLevel : Association to Incentives;
 }
 
